@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard - VetCare</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <i class="fas fa-heartbeat logo-icon"></i>
+        <h1>VetCare</h1>
+      </div>
+      <div class="header-right">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i>
+          <span id="userName">Customer</span>
+        </div>
+        <div class="cart-icon" onclick="toggleCart()">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+        <button class="btn btn-logout" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <div class="dashboard-content">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+          <button class="tab-btn active" onclick="showTab('store')">
+            <i class="fas fa-store"></i>
+            Store
+          </button>
+          <button class="tab-btn" onclick="showTab('cart')">
+            <i class="fas fa-shopping-cart"></i>
+            Cart
+          </button>
+          <button class="tab-btn" onclick="showTab('orders')">
+            <i class="fas fa-box"></i>
+            My Orders
+          </button>
+          <button class="tab-btn" onclick="showTab('profile')">
+            <i class="fas fa-user"></i>
+            Profile
+          </button>
+        </div>
+
+        <!-- Store Tab -->
+        <div id="storeTab" class="tab-content active">
+          <div class="page-header">
+            <h2>Veterinary Store</h2>
+            <div class="search-filter">
+              <input type="text" id="searchProducts" placeholder="Search products..." onkeyup="filterProducts()">
+              <select id="categoryFilter" onchange="filterProducts()">
+                <option value="">All categories</option>
+                <option value="alimentos">Food</option>
+                <option value="medicamentos">Medications</option>
+                <option value="accesorios">Accessories</option>
+                <option value="juguetes">Toys</option>
+                <option value="higiene">Hygiene</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="products-grid" id="productsGrid">
+            <!-- Product cards will be dynamically added here -->
+          </div>
+        </div>
+
+        <!-- Cart Tab -->
+        <div id="cartTab" class="tab-content">
+          <div class="page-header">
+            <h2>My Cart</h2>
+          </div>
+          <div class="cart-container">
+            <div class="cart-items" id="cartItems">
+              <!-- Cart items will be dynamically added here -->
+            </div>
+            <div class="cart-summary">
+              <h3>Order Summary</h3>
+              <div class="summary-item">
+                <span>Subtotal:</span>
+                <span id="subtotal">$0.00</span>
+              </div>
+              <div class="summary-item">
+                <span>Shipping:</span>
+                <span id="shipping">$5.00</span>
+              </div>
+              <div class="summary-item total">
+                <span>Total:</span>
+                <span id="total">$0.00</span>
+              </div>
+              <button class="btn btn-primary btn-full" onclick="checkout()">
+                <i class="fas fa-credit-card"></i>
+                Proceed to Payment
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="ordersTab" class="tab-content">
+          <div class="page-header">
+            <h2>My Orders</h2>
+          </div>
+          <div class="orders-container" id="ordersContainer">
+            <!-- Orders will be dynamically added here -->
+          </div>
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="profileTab" class="tab-content">
+          <div class="page-header">
+            <h2>My Profile</h2>
+          </div>
+          <div class="profile-container">
+            <div class="profile-info">
+              <div class="profile-avatar">
+                <i class="fas fa-user-circle"></i>
+              </div>
+              <div class="profile-details">
+                <h3 id="profileName">Customer Name</h3>
+                <p id="profileEmail">customer@email.com</p>
+                <p id="profilePhone">+1234567890</p>
+              </div>
+            </div>
+            <div class="profile-actions">
+              <button class="btn btn-secondary" onclick="editProfile()">
+                <i class="fas fa-edit"></i>
+                Edit Profile
+              </button>
+              <button class="btn btn-secondary" onclick="changePassword()">
+                <i class="fas fa-key"></i>
+                Change Password
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalProductName">Product Name</h3>
+        <button class="close-btn" onclick="closeProductModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="product-detail">
+        <div class="product-image">
+          <img id="modalProductImage" src="" alt="Product">
+        </div>
+        <div class="product-info">
+          <p id="modalProductDescription">Product description...</p>
+          <div class="product-price">
+            <span class="price" id="modalProductPrice">$0.00</span>
+          </div>
+          <div class="product-actions">
+            <div class="quantity-selector">
+              <button onclick="decreaseQuantity()">-</button>
+              <input type="number" id="productQuantity" value="1" min="1">
+              <button onclick="increaseQuantity()">+</button>
+            </div>
+            <button class="btn btn-primary" onclick="addToCart()">
+              <i class="fas fa-cart-plus"></i>
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Complete Purchase</h3>
+        <button class="close-btn" onclick="closeCheckoutModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <form id="checkoutForm" class="checkout-form">
+        <div class="form-section">
+          <h4>Shipping Information</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="shippingName">Full Name</label>
+              <input type="text" id="shippingName" name="shippingName" required>
+            </div>
+            <div class="form-group">
+              <label for="shippingPhone">Phone</label>
+              <input type="tel" id="shippingPhone" name="shippingPhone" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="shippingAddress">Address</label>
+            <textarea id="shippingAddress" name="shippingAddress" required></textarea>
+          </div>
+        </div>
+        <div class="form-section">
+          <h4>Payment Information</h4>
+          <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="expiryDate">Expiry Date</label>
+              <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" name="cvv" placeholder="123" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeCheckoutModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Complete Order</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Load the JS module and handle events within it -->
+  <script type="module" src="../js/dashboardCustomer.js"></script>
+</body>
+</html>

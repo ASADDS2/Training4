@@ -1,0 +1,122 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Admin",
+      "lastName": "VetCare",
+      "email": "admin@vetcare.com",
+      "password": "admin123",
+      "phone": "1234567890",
+      "userType": "admin",
+      "registrationDate": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "firstName": "Administrator",
+      "lastName": "System",
+      "email": "administrador@vetcare.com",
+      "password": "admin123",
+      "phone": "1234567890",
+      "userType": "admin",
+      "registrationDate": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "firstName": "Veterinarian",
+      "lastName": "Main",
+      "email": "vet@vetcare.com",
+      "password": "vet123",
+      "phone": "1234567890",
+      "userType": "admin",
+      "registrationDate": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "2f6a",
+      "firstName": "Sebastian",
+      "lastName": "Arnache",
+      "email": "sevasdlol2345@gmail.com",
+      "phone": "313131333",
+      "password": "sevas2345",
+      "userType": "customer",
+      "registrationDate": "2025-07-11T04:34:17.297Z"
+    }
+  ],
+  "pets": [],
+  "products": [
+    {
+      "id": "1",
+      "name": "Premium Dog Food",
+      "description": "Balanced food with high-quality proteins for adult dogs",
+      "price": 25.99,
+      "category": "alimentos",
+      "image": "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      "stock": 50
+    },
+    {
+      "id": "2",
+      "name": "Triple Feline Vaccine",
+      "description": "Essential vaccine for cats against common diseases",
+      "price": 35,
+      "category": "medicamentos",
+      "image": "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      "stock": 30
+    },
+    {
+      "id": "3",
+      "name": "Flea Collar",
+      "description": "Flea and tick repellent collar, 8 months duration",
+      "price": 18.5,
+      "category": "accesorios",
+      "image": "https://images.unsplash.com/photo-1583511655826-05700d52a4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      "stock": 25
+    },
+    {
+      "id": "4",
+      "name": "Interactive Toy",
+      "description": "Stimulating toy to keep your pets active",
+      "price": 12.99,
+      "category": "juguetes",
+      "image": "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      "stock": 40
+    },
+    {
+      "id": "5",
+      "name": "Pet Shampoo",
+      "description": "Hypoallergenic shampoo with balanced pH for sensitive skin",
+      "price": 15.75,
+      "category": "higiene",
+      "image": "https://images.unsplash.com/photo-1583511655826-05700d52a4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      "stock": 35
+    },
+    {
+      "id": "6",
+      "name": "Cat Vitamins",
+      "description": "Complete vitamin supplement for cats of all ages",
+      "price": 22.5,
+      "category": "medicamentos",
+      "image": "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      "stock": 20
+    }
+  ],
+  "orders": [],
+  "appointments": [
+    {
+      "id": "1",
+      "petName": "Luna",
+      "date": "2024-01-15",
+      "time": "10:00",
+      "service": "Vaccination",
+      "status": "Scheduled",
+      "customerEmail": "sevasdlol2345@gmail.com"
+    },
+    {
+      "id": "2",
+      "petName": "Max",
+      "date": "2024-01-16",
+      "time": "14:30",
+      "service": "Check-up",
+      "status": "Completed",
+      "customerEmail": "sevasdlol2345@gmail.com"
+    }
+  ]
+}

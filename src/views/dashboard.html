@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - VetCare</title>
+  <link rel="stylesheet" href="/src/css/styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <i class="fas fa-heartbeat logo-icon"></i>
+        <h1>VetCare</h1>
+      </div>
+      <div class="header-right">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i>
+          <span id="userName">User</span>
+        </div>
+        <button class="btn btn-logout" id="btnLogout">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <div class="dashboard-content">
+        <div class="page-header">
+          <h2>My Pets</h2>
+          <button class="btn btn-primary" id="btnAddPet">
+            <i class="fas fa-plus"></i>
+            Add Pet
+          </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+          <div class="stat-card">
+            <i class="fas fa-paw"></i>
+            <div class="stat-info">
+              <h3 id="totalPets">0</h3>
+              <p>Total Pets</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pets Grid -->
+        <div class="pets-grid" id="petsGrid">
+          <!-- Pet cards will be dynamically added here -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Pet Modal -->
+  <div id="addPetModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add New Pet</h3>
+        <button class="close-btn" id="closeAddPetBtn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <form id="addPetForm" class="modal-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="petName">Pet Name</label>
+            <input type="text" id="petName" name="petName" required />
+          </div>
+          <div class="form-group">
+            <label for="petAge">Age</label>
+            <input type="number" id="petAge" name="petAge" min="0" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="petBreed">Breed</label>
+            <input type="text" id="petBreed" name="petBreed" required />
+          </div>
+          <div class="form-group">
+            <label for="petOwner">Owner</label>
+            <input type="text" id="petOwner" name="petOwner" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="petType">Pet Type</label>
+          <select id="petType" name="petType" required>
+            <option value="">Select type</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="bird">Bird</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="cancelAddPetBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Pet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Pet Modal -->
+  <div id="editPetModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit Pet</h3>
+        <button class="close-btn" id="closeEditPetBtn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <form id="editPetForm" class="modal-form">
+        <input type="hidden" id="editPetId" name="editPetId" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editPetName">Pet Name</label>
+            <input type="text" id="editPetName" name="editPetName" required />
+          </div>
+          <div class="form-group">
+            <label for="editPetAge">Age</label>
+            <input type="number" id="editPetAge" name="editPetAge" min="0" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editPetBreed">Breed</label>
+            <input type="text" id="editPetBreed" name="editPetBreed" required />
+          </div>
+          <div class="form-group">
+            <label for="editPetOwner">Owner</label>
+            <input type="text" id="editPetOwner" name="editPetOwner" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="editPetType">Pet Type</label>
+          <select id="editPetType" name="editPetType" required>
+            <option value="">Select type</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="bird">Bird</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="cancelEditPetBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Pet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Load the JS module and handle events within it -->
+  <script type="module" src="../js/dashboard.js"></script>
+</body>
+</html>
